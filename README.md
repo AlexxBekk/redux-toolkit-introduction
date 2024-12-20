@@ -113,43 +113,43 @@
 1. **Иммутабельность:**  
    В прошлом задании мы тренировались делать изменения иммутабельно, но Redux Toolkit имеет под капотом **Immer**, что позволяет писать код так, как будто ты мутируешь исходный объект, сохраняя иммутабельность. Это работает, потому что наш код становится "драфтом" (наброском) того, как должно измениться состояние, а библиотека сама производит изменения иммутабельным образом.
 
-### Пример использования Immer в Redux Toolkit:
-
-#### Без Immer:
-```javascript
-function updateItemQuantity(state, action) {
-  return state.map((item) => {
-    if (item.id === action.payload.id) {
-      return {
-        ...item,
-        quantity: item.quantity + action.payload.amount,
-      };
-    }
-    return item;
-  });
-}
-```
-
-#### С Immer (в Redux Toolkit):
-```javascript
-import { createSlice } from '@reduxjs/toolkit';
-
-const cartSlice = createSlice({
-  name: 'cart',
-  initialState: [],
-  reducers: {
-    updateItemQuantity(state, action) {
-      const item = state.find((item) => item.id === action.payload.id);
-      if (item) {
-        item.quantity += action.payload.amount; // Пишем код, будто мутируем объект
-      }
-    },
-  },
-});
-
-export const { updateItemQuantity } = cartSlice.actions;
-export default cartSlice.reducer;
-```
+     ### Пример использования Immer в Redux Toolkit:
+     
+     #### Без Immer:
+     ```javascript
+     function updateItemQuantity(state, action) {
+       return state.map((item) => {
+         if (item.id === action.payload.id) {
+           return {
+             ...item,
+             quantity: item.quantity + action.payload.amount,
+           };
+         }
+         return item;
+       });
+     }
+     ```
+     
+     #### С Immer (в Redux Toolkit):
+     ```javascript
+     import { createSlice } from '@reduxjs/toolkit';
+     
+     const cartSlice = createSlice({
+       name: 'cart',
+       initialState: [],
+       reducers: {
+         updateItemQuantity(state, action) {
+           const item = state.find((item) => item.id === action.payload.id);
+           if (item) {
+             item.quantity += action.payload.amount; // Пишем код, будто мутируем объект
+           }
+         },
+       },
+     });
+     
+     export const { updateItemQuantity } = cartSlice.actions;
+     export default cartSlice.reducer;
+     ```
 
 2. **Селекторы:**  
    Селекторы помогают упростить доступ к данным и делают код более читаемым. Например:
