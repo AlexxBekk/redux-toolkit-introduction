@@ -1,0 +1,21 @@
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.listItem {
+  margin-bottom: 8px;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.submitButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
